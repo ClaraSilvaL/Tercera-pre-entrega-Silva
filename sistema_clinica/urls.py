@@ -18,9 +18,12 @@ from django.contrib import admin
 from django.urls import path
 
 from sistema_clinica.views import saludar, saludar_con_html
+from control_clinica.views import listar_pacientes, listar_diagnosticos
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('saludo/', saludar),
     path('saludo-html/', saludar_con_html),
+    path('plataforma/pacientes/', listar_pacientes),
+    path('plataforma/diagnosticos/', listar_diagnosticos),
 ]

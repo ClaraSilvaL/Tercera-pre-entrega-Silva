@@ -1,0 +1,14 @@
+{% extends "control_clinica/base.html" %}
+
+{% block contenido %}
+<section>
+    <div>
+        <h1>Lista de diagnosticos</h1>
+        <ul>
+        {% for diagnostico in diagnosticos %}
+            <li>{{ diagnostico.enfermedad }}, {{diagnostico.estado}} </li>
+        {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock contenido %}
