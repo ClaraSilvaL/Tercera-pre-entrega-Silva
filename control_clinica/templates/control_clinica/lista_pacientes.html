@@ -4,6 +4,8 @@
 <section>
     <div>
         <h1>Lista de pacientes</h1>
+        {% block contenido_pacientes %}
+        {% endblock contenido_pacientes}
         <ul>
         {% for paciente in pacientes %}
             <li>{{ paciente.apellido }}, {{paciente.nombre}} </li>

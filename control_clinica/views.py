@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
+
 def listar_pacientes(request):
     contexto = {
         "pacientes": [
@@ -8,12 +9,12 @@ def listar_pacientes(request):
             {"nombre": "Valeria", "apellido": "Rojas"},
         ]
     }
-    http_responde = render(
+    http_response = render(
         request=request,
         template_name='control_clinica/lista_pacientes.html',
         context=contexto,
     )
-    return http_responde
+    return http_response
 
 def listar_diagnosticos(request):
     contexto = {
@@ -22,9 +23,9 @@ def listar_diagnosticos(request):
             {"enfermedad": "Gripe", "estado": "moderado"},
         ]
     }
-    http_responde = render(
+    http_response = render(
         request=request,
         template_name='control_clinica/lista_diagnosticos.html',
         context=contexto,
     )
-    return http_responde
+    return http_response
