@@ -1,13 +1,12 @@
 from django.shortcuts import render
 
+from control_clinica.models import *
+
 # Create your views here.
 
 def listar_pacientes(request):
     contexto = {
-        "pacientes": [
-            {"nombre": "Eva", "apellido": "Garcia"},
-            {"nombre": "Valeria", "apellido": "Rojas"},
-        ]
+        "pacientes": Paciente.objects.all(),
     }
     http_response = render(
         request=request,
@@ -18,10 +17,7 @@ def listar_pacientes(request):
 
 def listar_diagnosticos(request):
     contexto = {
-        "diagnosticos": [
-            {"enfermedad": "Gripe", "estado": "leve"},
-            {"enfermedad": "Gripe", "estado": "moderado"},
-        ]
+        "diagnosticos": Diagnostico.objects.all(),
     }
     http_response = render(
         request=request,
