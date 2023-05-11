@@ -172,3 +172,63 @@ def registrar_receta(request):
         context={'formulario_receta': formulario_receta},
     )
     return http_response
+
+def buscar_doctor(request):
+    if request.method == "POST":
+        data = request.POST
+        busqueda = data["busqueda"]
+        doctores = Doctor.objects.filter(apellido__exact=busqueda)
+        contexto = {
+            "doctores": doctores,
+        }
+        http_response = render(
+        request=request,
+        template_name='control_clinica/lista_doctores.html',
+        context=contexto,
+    )
+    return http_response
+
+def buscar_paciente(request):
+    if request.method == "POST":
+        data = request.POST
+        busqueda = data["busqueda"]
+        pacientes = Paciente.objects.filter(apellido__exact=busqueda)
+        contexto = {
+            "pacientes": pacientes,
+        }
+        http_response = render(
+        request=request,
+        template_name='control_clinica/lista_pacientes.html',
+        context=contexto,
+    )
+    return http_response
+
+def buscar_estado(request):
+    if request.method == "POST":
+        data = request.POST
+        busqueda = data["busqueda"]
+        diagnosticos = Diagnostico.objects.filter(estado__exact=busqueda)
+        contexto = {
+            "diagnosticos": diagnosticos,
+        }
+        http_response = render(
+        request=request,
+        template_name='control_clinica/lista_diagnosticos.html',
+        context=contexto,
+    )
+    return http_response
+
+def buscar_receta(request):
+    if request.method == "POST":
+        data = request.POST
+        busqueda = data["busqueda"]
+        recetas = Receta.objects.filter(medicamento__exact=busqueda)
+        contexto = {
+            "recetas": recetas,
+        }
+        http_response = render(
+        request=request,
+        template_name='control_clinica/lista_recetas.html',
+        context=contexto,
+    )
+    return http_response

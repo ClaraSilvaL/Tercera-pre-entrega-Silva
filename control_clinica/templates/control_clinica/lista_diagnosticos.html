@@ -3,8 +3,16 @@
 {% block contenido %}
 <section>
     <div>
-        <a href="{% url 'registrar_diagnostico' %}">Registrar diagnostico</a>
         <h1>Lista de diagnosticos</h1>
+        <a href="{% url 'registrar_diagnostico' %}">Registrar diagnostico</a>
+        <br><br>
+        <form action="{% url 'buscar_estado' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="busqueda">
+            <input type="submit" value="Buscar por estado">
+        </form>
+        
+        <br><br>
         <ul>
         {% for diagnostico in diagnosticos %}
             <li>{{ diagnostico.enfermedad }}, {{diagnostico.estado}} </li>
