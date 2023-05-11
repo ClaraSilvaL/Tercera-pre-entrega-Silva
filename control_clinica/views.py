@@ -25,3 +25,12 @@ def listar_diagnosticos(request):
         context=contexto,
     )
     return http_response
+
+def registrar_diagnostico(request):
+    contexto = {}
+    http_response = render(
+        request=request,
+        template_name='control_clinica/formulario_diagnostico_a_mano.html',
+        context=contexto,
+    )
+    return http_response

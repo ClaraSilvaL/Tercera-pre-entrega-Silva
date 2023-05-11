@@ -1,0 +1,14 @@
+{% extends "control_clinica/base.html" %}
+
+{% block contenido %}
+<form action="{% url 'registrar_diagnostico' %}" method="post">
+    {% csrf_token %}
+    <p>Enfermedad</p>
+    <input type="text" name="enfermedad">
+    <p>Estado</p>
+    <input type="text" name="estado">
+    <input type="submit" value="Enviar">
+</form>
+
+
+{% endblock contenido %}
