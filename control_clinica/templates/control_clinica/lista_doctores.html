@@ -1,0 +1,15 @@
+{% extends "control_clinica/base.html" %}
+
+{% block contenido %}
+<section>
+    <div>
+        
+        <h1>Lista de doctores</h1>
+        <ul>
+        {% for doctor in doctores %}
+            <li>{{ doctor.apellido }}, {{doctor.nombre}} </li>
+        {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock contenido %}

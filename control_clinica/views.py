@@ -27,6 +27,28 @@ def listar_diagnosticos(request):
     )
     return http_response
 
+def listar_doctores(request):
+    contexto = {
+        "doctores": Paciente.objects.all(),
+    }
+    http_response = render(
+        request=request,
+        template_name='control_clinica/lista_doctores.html',
+        context=contexto,
+    )
+    return http_response
+
+def listar_recetas(request):
+    contexto = {
+        "recetas": Receta.objects.all(),
+    }
+    http_response = render(
+        request=request,
+        template_name='control_clinica/lista_recetas.html',
+        context=contexto,
+    )
+    return http_response
+
 def registrar_diagnostico(request):
     if request.method == "POST":
         data = request.POST #es un diccionario

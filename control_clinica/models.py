@@ -34,3 +34,6 @@ class Receta(models.Model):
     medicamento = models.CharField(max_length=256)
     frecuencia_horaria = models.CharField(max_length=5)
     numero_dias = models.CharField(max_length=5)
+
+    def __str__(self):
+        return f"{self.medicamento} | frec. horaria: {self.frecuencia_horaria} | nro dias: {self.numero_dias}"

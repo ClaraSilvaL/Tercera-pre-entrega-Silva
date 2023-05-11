@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from control_clinica.views import listar_pacientes, listar_diagnosticos, registrar_diagnostico
+from control_clinica.views import listar_pacientes, listar_diagnosticos, registrar_diagnostico, listar_doctores, listar_recetas
 
 urlpatterns = [
     path('pacientes/', listar_pacientes, name='listar_pacientes'),
     path('diagnosticos/', listar_diagnosticos, name='listar_diagnosticos'),
+    path('doctores/', listar_doctores, name='listar_doctores'),
+    path('recetas/', listar_recetas, name='listar_recetas'),
     path('registrar-diagnostico/', registrar_diagnostico, name='registrar_diagnostico'),
 ]

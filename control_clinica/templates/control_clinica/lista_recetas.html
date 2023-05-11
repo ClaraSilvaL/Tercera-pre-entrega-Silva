@@ -1,0 +1,15 @@
+{% extends "control_clinica/base.html" %}
+
+{% block contenido %}
+<section>
+    <div>
+        
+        <h1>Lista de recetas</h1>
+        <ul>
+        {% for receta in recetas %}
+            <li>Tomar {{receta.medicamento}}, cada {{receta.frecuencia_horaria}} horas, por {{receta.numero_dias}} dia(s)</li>
+        {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock contenido %}
