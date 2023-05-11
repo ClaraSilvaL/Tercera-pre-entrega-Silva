@@ -20,6 +20,6 @@ from django.urls import path
 from control_clinica.views import listar_pacientes, listar_diagnosticos
 
 urlpatterns = [
-    path('pacientes/', listar_pacientes),
-    path('diagnosticos/', listar_diagnosticos),
+    path('pacientes/', listar_pacientes, name='listar_pacientes'),
+    path('diagnosticos/', listar_diagnosticos, name='listar_diagnosticos'),
 ]

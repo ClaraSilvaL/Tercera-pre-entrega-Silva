@@ -23,9 +23,9 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="">Pacientes</a>
-                <a class="navbar-brand" href="#!">Enfermedades</a>
-                <a class="navbar-brand" href="#!">Diagnostico</a>
+                <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
+                <a class="navbar-brand" href="{% url 'listar_pacientes' %}">Pacientes</a>
+                <a class="navbar-brand" href="{% url 'listar_diagnosticos' %}">Diagnosticos</a>
                 <a class="btn btn-primary" href="#signup">Registro</a>
             </div>
         </nav>
@@ -51,13 +51,13 @@
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                                <a href="https://www.facebook.com/sannasalud"><i class="bi-facebook fs-3"></i></a>
                             </li>
                             <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                                <a href="https://twitter.com/clinicagoodhope?lang=es"><i class="bi-twitter fs-3"></i></a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="https://www.instagram.com/espndeportes/?hl=es"><i class="bi-instagram fs-3"></i></a>
+                                <a href="https://www.instagram.com/sannasalud/?hl=es-la"><i class="bi-instagram fs-3"></i></a>
                             </li>
                         </ul>
                     </div>
