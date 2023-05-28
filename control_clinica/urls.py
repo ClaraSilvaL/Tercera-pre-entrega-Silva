@@ -17,20 +17,39 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from control_clinica.views import listar_pacientes, listar_diagnosticos, registrar_diagnostico, listar_doctores, listar_recetas, \
-    registrar_doctor, registrar_paciente, registrar_receta, buscar_doctor, buscar_paciente, buscar_estado, buscar_receta
+from control_clinica.views import buscar_doctor, buscar_paciente, buscar_estado, buscar_receta, \
+    PacienteListView, PacienteCreateView, PacienteDetailView, PacienteDeleteView, PacienteUpdateView, \
+    DiagnosticoListView, DiagnosticoCreateView, DiagnosticoDetailView, DiagnosticoDeleteView, DiagnosticoUpdateView, \
+    DoctoresListView, DoctoresCreateView, DoctoresDetailView, DoctoresDeleteView, DoctoresUpdateView, \
+    RecetasListView, RecetasCreateView, RecetasDetailView, RecetasDeleteView, RecetasUpdateView
 
 urlpatterns = [
-    path('pacientes/', listar_pacientes, name='listar_pacientes'),
-    path('diagnosticos/', listar_diagnosticos, name='listar_diagnosticos'),
-    path('doctores/', listar_doctores, name='listar_doctores'),
-    path('recetas/', listar_recetas, name='listar_recetas'),
-    path('registrar-diagnostico/', registrar_diagnostico, name='registrar_diagnostico'),
-    path('registrar-doctor/', registrar_doctor, name='registrar_doctor'),
-    path('registrar-paciente/', registrar_paciente, name='registrar_paciente'),
-    path('registrar-receta/', registrar_receta, name='registrar_receta'),
-    path('buscar-doctor/', buscar_doctor, name='buscar_doctor'),
+    #URLS de pacientes
+    path('pacientes/', PacienteListView.as_view(), name='listar_pacientes'),
+    path("pacientes/<int:pk>", PacienteDetailView.as_view(), name="ver_paciente"),
+    path("registrar-pacientes/", PacienteCreateView.as_view(), name="registrar_paciente"),
+    path("editar-paciente/<int:pk>", PacienteUpdateView.as_view(), name="editar_paciente"),
+    path("eliminar-paciente/<int:pk>", PacienteDeleteView.as_view(), name="eliminar_paciente"),
     path('buscar-paciente/', buscar_paciente, name='buscar_paciente'),
+    #URLS de diagnostico
+    path('diagnosticos/', DiagnosticoListView.as_view(), name='listar_diagnosticos'),
+    path("diagnosticos/<int:pk>", DiagnosticoDetailView.as_view(), name="ver_diagnostico"),
+    path("registrar-diagnosticos/", DiagnosticoCreateView.as_view(), name="registrar_diagnostico"),
+    path("editar-diagnostico/<int:pk>", DiagnosticoUpdateView.as_view(), name="editar_diagnostico"),
+    path("eliminar-diagnostico/<int:pk>", DiagnosticoDeleteView.as_view(), name="eliminar_diagnostico"),
     path('buscar-diagnostico/', buscar_estado, name='buscar_estado'),
+    #URLS de doctores
+    path('doctores/', DoctoresListView.as_view(), name='listar_doctores'),
+    path("doctores/<int:pk>", DoctoresDetailView.as_view(), name="ver_doctor"),
+    path("registrar-doctores/", DoctoresCreateView.as_view(), name="registrar_doctor"),
+    path("editar-doctor/<int:pk>", DoctoresUpdateView.as_view(), name="editar_doctor"),
+    path("eliminar-doctor/<int:pk>", DoctoresDeleteView.as_view(), name="eliminar_doctor"),
+    path('buscar-doctor/', buscar_doctor, name='buscar_doctor'),
+    #URLS de recetas
+    path('recetas/', RecetasListView.as_view(), name='listar_recetas'),
+    path("recetas/<int:pk>", RecetasDetailView.as_view(), name="ver_receta"),
+    path("registrar-recetas/", RecetasCreateView.as_view(), name="registrar_receta"),
+    path("editar-receta/<int:pk>", RecetasUpdateView.as_view(), name="editar_receta"),
+    path("eliminar-receta/<int:pk>", RecetasDeleteView.as_view(), name="eliminar_receta"),
     path('buscar-receta/', buscar_receta, name='buscar_receta'),
 ]

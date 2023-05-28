@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from sistema_clinica.views import saludar, saludar_con_html, inicio
-from control_clinica.views import listar_pacientes, listar_diagnosticos
+from control_clinica.views import PacienteListView, DiagnosticoListView
 
 urlpatterns = [
     path('', inicio, name='inicio'),

@@ -37,3 +37,11 @@ class Receta(models.Model):
 
     def __str__(self):
         return f"{self.medicamento} | frec. horaria: {self.frecuencia_horaria} | nro dias: {self.numero_dias}"
+    
+#class Servicios(models.Model):
+    #Titulo = models.CharField(max_length=256)
+    #Subtitulo = models.CharField(max_length=256)
+    #descripcion = models.TextField(blank=True)
+    #autor 
+    #fecha
+    #imagen

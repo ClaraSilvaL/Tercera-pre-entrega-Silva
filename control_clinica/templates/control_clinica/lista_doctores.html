@@ -13,11 +13,24 @@
             <input type="submit" value="Buscar por apellido">
         </form>
         <br><br>
-        <ul>
-        {% for doctor in doctores %}
-            <li>{{ doctor.apellido }}, {{doctor.nombre}} </li>
-        {% endfor %}
-        </ul>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Especialidad</th>
+                </tr>
+                {% for doctor in object_list %}
+                <tr>
+                    <td>{{ doctor.id }} </td>
+                    <td>{{ doctor.nombre }} </td>
+                    <td>{{ doctor.apellido }} </td>
+                    <td>{{ doctor.especialidad }} </td>                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </section>
 {% endblock contenido %}

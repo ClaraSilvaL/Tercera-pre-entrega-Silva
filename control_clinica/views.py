@@ -1,177 +1,98 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from control_clinica.forms import *
 from control_clinica.models import *
 
 # Create your views here.
+#Vistas de pacientes
+class PacienteListView(ListView):
+    model = Paciente
+    template_name='control_clinica/lista_pacientes.html'
 
-def listar_pacientes(request):
-    contexto = {
-        "pacientes": Paciente.objects.all(),
-    }
-    http_response = render(
-        request=request,
-        template_name='control_clinica/lista_pacientes.html',
-        context=contexto,
-    )
-    return http_response
+class PacienteCreateView(CreateView):
+    model = Paciente
+    fields = ('apellido', 'nombre', 'telefono', 'dni', 'fecha_nacimiento')
+    success_url = reverse_lazy('listar_pacientes')
 
-def listar_diagnosticos(request):
-    contexto = {
-        "diagnosticos": Diagnostico.objects.all(),
-    }
-    http_response = render(
-        request=request,
-        template_name='control_clinica/lista_diagnosticos.html',
-        context=contexto,
-    )
-    return http_response
+class PacienteDetailView(DetailView):
+    model = Paciente
 
-def listar_doctores(request):
-    contexto = {
-        "doctores": Doctor.objects.all(),
-    }
-    http_response = render(
-        request=request,
-        template_name='control_clinica/lista_doctores.html',
-        context=contexto,
-    )
-    return http_response
+class PacienteUpdateView(UpdateView):
+    model = Paciente
+    fields = ('apellido', 'nombre', 'telefono', 'dni', 'fecha_nacimiento')
+    success_url = reverse_lazy('listar_pacientes')
 
-def listar_recetas(request):
-    contexto = {
-        "recetas": Receta.objects.all(),
-    }
-    http_response = render(
-        request=request,
-        template_name='control_clinica/lista_recetas.html',
-        context=contexto,
-    )
-    return http_response
+class PacienteDeleteView(DeleteView):
+    model = Paciente
+    success_url = reverse_lazy('listar_pacientes')
 
-def registrar_diagnostico_version_1(request):
-    if request.method == "POST":
-        data = request.POST #es un diccionario
-        enfermedad = data["enfermedad"]
-        estado = data["estado"]
-        diagnostico = Diagnostico(enfermedad = enfermedad, estado = estado) #Creacion en la RAM
-        diagnostico.save() #Almacenamiento en la base de datos
-        #Redireccion al usuario a lista de diagnosticos
-        url_exitosa = reverse('listar_diagnosticos')
-        return redirect(url_exitosa)
-    else: #GET
-        http_response = render(
-        request=request,
-        template_name='control_clinica/formulario_diagnostico_a_mano.html',
-        #context=contexto,
-    )
-    return http_response
+#Vistas de diagnosticos
+class DiagnosticoListView(ListView):
+    model = Diagnostico
+    template_name='control_clinica/lista_diagnosticos.html'
 
-def registrar_diagnostico(request):
-    if request.method == "POST":
-        formulario = DiagnosticoFormulario(request.POST)
+class DiagnosticoCreateView(CreateView):
+    model = Diagnostico
+    fields = ('enfermedad', 'estado')
+    success_url = reverse_lazy('listar_diagnosticos')
 
-        if formulario.is_valid():
-            data = formulario.cleaned_data
-            enfermedad = data["enfermedad"]
-            estado = data["estado"]
-            diagnostico = Diagnostico(enfermedad = enfermedad, estado = estado) #Creacion en la RAM
-            diagnostico.save() #Almacenamiento en la base de datos
-            
-            #Redireccion al usuario a lista de diagnosticos
-            url_exitosa = reverse('listar_diagnosticos')
-            return redirect(url_exitosa)
-        
-    else: #GET
-        formulario = DiagnosticoFormulario()
-    http_response = render(
-        request=request,
-        template_name='control_clinica/formulario_diagnostico.html',
-        context={'formulario': formulario},
-    )
-    return http_response
+class DiagnosticoDetailView(DetailView):
+    model = Diagnostico
 
-def registrar_doctor(request):
-    if request.method == "POST":
-        formulario_doctor = DoctorFormulario(request.POST)
+class DiagnosticoUpdateView(UpdateView):
+    model = Diagnostico
+    fields = ('enfermedad', 'estado')
+    success_url = reverse_lazy('listar_diagnosticos')
 
-        if formulario_doctor.is_valid():
-            data = formulario_doctor.cleaned_data
-            apellido = data["apellido"]
-            nombre = data["nombre"]
-            dni = data["dni"]
-            email = data["email"]
-            telefono = data["telefono"]
-            especialidad = data["especialidad"]
-            fecha_nacimiento = data["fecha_nacimiento"]
-            doctor = Doctor(apellido = apellido, nombre = nombre, dni = dni, email = email, telefono = telefono, especialidad = especialidad, fecha_nacimiento = fecha_nacimiento) #Creacion en la RAM
-            doctor.save() #Almacenamiento en la base de datos
-            
-            #Redireccion al usuario a lista de diagnosticos
-            url_exitosa = reverse('listar_doctores')
-            return redirect(url_exitosa)
-        
-    else: #GET
-        formulario_doctor = DoctorFormulario()
-    http_response = render(
-        request=request,
-        template_name='control_clinica/formulario_doctor.html',
-        context={'formulario_doctor': formulario_doctor},
-    )
-    return http_response
+class DiagnosticoDeleteView(DeleteView):
+    model = Diagnostico
+    success_url = reverse_lazy('listar_diagnosticos')
 
-def registrar_paciente(request):
-    if request.method == "POST":
-        formulario_paciente = PacienteFormulario(request.POST)
+#Vistas de doctores
+class DoctoresListView(ListView):
+    model = Doctor
+    template_name='control_clinica/lista_doctores.html'
 
-        if formulario_paciente.is_valid():
-            data = formulario_paciente.cleaned_data
-            apellido = data["apellido"]
-            nombre = data["nombre"]         
-            telefono = data["telefono"]
-            dni = data["dni"]
-            fecha_nacimiento = data["fecha_nacimiento"]
-            paciente = Paciente(apellido = apellido, nombre = nombre, telefono = telefono, dni = dni, fecha_nacimiento = fecha_nacimiento) #Creacion en la RAM
-            paciente.save() #Almacenamiento en la base de datos
-            
-            #Redireccion al usuario a lista de diagnosticos
-            url_exitosa = reverse('listar_pacientes')
-            return redirect(url_exitosa)
-        
-    else: #GET
-        formulario_paciente = PacienteFormulario()
-    http_response = render(
-        request=request,
-        template_name='control_clinica/formulario_paciente.html',
-        context={'formulario_paciente': formulario_paciente},
-    )
-    return http_response
+class DoctoresCreateView(CreateView):
+    model = Doctor
+    fields = ('apellido', 'nombre', 'dni', 'email', 'telefono', 'especialidad', 'fecha_nacimiento')
+    success_url = reverse_lazy('listar_doctores')
 
-def registrar_receta(request):
-    if request.method == "POST":
-        formulario = RecetaFormulario(request.POST)
+class DoctoresDetailView(DetailView):
+    model = Doctor
 
-        if formulario.is_valid():
-            data = formulario.cleaned_data
-            medicamento = data["medicamento"]
-            frecuencia_horaria = data["frecuencia_horaria"]
-            numero_dias = data["numero_dias"]
-            receta = Receta(medicamento = medicamento, frecuencia_horaria = frecuencia_horaria, numero_dias = numero_dias) #Creacion en la RAM
-            receta.save() #Almacenamiento en la base de datos
-            
-            #Redireccion al usuario a lista de diagnosticos
-            url_exitosa = reverse('listar_recetas')
-            return redirect(url_exitosa)
-        
-    else: #GET
-        formulario_receta = RecetaFormulario()
-    http_response = render(
-        request=request,
-        template_name='control_clinica/formulario_receta.html',
-        context={'formulario_receta': formulario_receta},
-    )
-    return http_response
+class DoctoresUpdateView(UpdateView):
+    model = Doctor
+    fields = ('apellido', 'nombre', 'dni', 'email', 'telefono', 'especialidad', 'fecha_nacimiento')
+    success_url = reverse_lazy('listar_doctores')
+
+class DoctoresDeleteView(DeleteView):
+    model = Doctor
+    success_url = reverse_lazy('listar_doctores')
+
+#Vistas de recetas
+class RecetasListView(ListView):
+    model = Receta
+    template_name='control_clinica/lista_recetas.html'
+
+class RecetasCreateView(CreateView):
+    model = Receta
+    fields = ('medicamento', 'frecuencia_horaria', 'numero_dias')
+    success_url = reverse_lazy('listar_recetas')
+
+class RecetasDetailView(DetailView):
+    model = Receta
+
+class RecetasUpdateView(UpdateView):
+    model = Receta
+    fields = ('medicamento', 'frecuencia_horaria', 'numero_dias')
+    success_url = reverse_lazy('listar_recetas')
+
+class RecetasDeleteView(DeleteView):
+    model = Receta
+    success_url = reverse_lazy('listar_recetas')
 
 def buscar_doctor(request):
     if request.method == "POST":

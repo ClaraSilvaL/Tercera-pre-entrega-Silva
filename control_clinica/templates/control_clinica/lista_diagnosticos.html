@@ -13,11 +13,22 @@
         </form>
         
         <br><br>
-        <ul>
-        {% for diagnostico in diagnosticos %}
-            <li>{{ diagnostico.enfermedad }}, {{diagnostico.estado}} </li>
-        {% endfor %}
-        </ul>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <th>Enfermedad</th>
+                    <th>Estado</th>
+                </tr>
+                {% for diagnostico in object_list %}
+                <tr>
+                    <td>{{ diagnostico.id }} </td>
+                    <td>{{ diagnostico.enfermedad}} </td>
+                    <td>{{ diagnostico.estado }} </td>                
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </section>
 {% endblock contenido %}

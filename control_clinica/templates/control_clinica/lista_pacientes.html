@@ -14,11 +14,38 @@
         {% block contenido_pacientes %}
         {% endblock contenido_pacientes %}
         <br><br>
-        <ul>
-        {% for paciente in pacientes %}
-            <li>{{ paciente.apellido }}, {{paciente.nombre}} </li>
-        {% endfor %}
-        </ul>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fecha de nacimiento</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for paciente in object_list %}
+                <tr>
+                    <td>{{ paciente.id }} </td>
+                    <td>{{ paciente.nombre }} </td>
+                    <td>{{ paciente.apellido }} </td>
+                    <td>{{ paciente.fecha_nacimiento }} </td>
+                    <td>
+                        <a href="{% url 'ver_paciente' paciente.id %}"> Ver</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'editar_paciente' paciente.id %}"> Editar</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'eliminar_paciente' paciente.id %}"> 
+                            <i class="bi bi-trash"></i> 
+                        </a>
+                    </td>                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </section>
 {% endblock contenido %}
