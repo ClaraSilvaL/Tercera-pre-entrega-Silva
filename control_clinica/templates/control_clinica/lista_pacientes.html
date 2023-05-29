@@ -32,10 +32,17 @@
                     <td>{{ paciente.apellido }} </td>
                     <td>{{ paciente.fecha_nacimiento }} </td>
                     <td>
-                        <a href="{% url 'ver_paciente' paciente.id %}"> Ver</a>
+                        <a href="{% url 'ver_paciente' paciente.id %}">
+                            Ver
+                            <!--<i class="fa-solid fa-eye"></i>-->
+                            <!--<i class="fa-solid fa-eye"></i>-->
+                        </a>
                     </td>
                     <td>
-                        <a href="{% url 'editar_paciente' paciente.id %}"> Editar</a>
+                        <a href="{% url 'editar_paciente' paciente.id %}">
+                            Editar
+                            <!--<i class="fa-solid fa-user-pen"></i>-->
+                        </a>
                     </td>
                     <td>
                         <a href="{% url 'eliminar_paciente' paciente.id %}"> 
