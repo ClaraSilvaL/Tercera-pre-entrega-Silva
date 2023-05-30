@@ -62,7 +62,7 @@ class DoctoresCreateView(LoginRequiredMixin, CreateView):
     fields = ('apellido', 'nombre', 'dni', 'email', 'telefono', 'especialidad', 'fecha_nacimiento')
     success_url = reverse_lazy('listar_doctores')
 
-class DoctoresDetailView(LoginRequiredMixin, DetailView):
+class DoctoresDetailView(DetailView):
     model = Doctor
 
 class DoctoresUpdateView(LoginRequiredMixin, UpdateView):

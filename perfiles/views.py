@@ -73,7 +73,7 @@ def agregar_avatar(request):
           avatar = formulario.save()
           avatar.user = request.user
           avatar.save()
-          url_exitosa = reverse('inicio')
+          url_exitosa = reverse('editar_perfil')
           return redirect(url_exitosa)
   else:  # GET
       formulario = AvatarFormulario()
