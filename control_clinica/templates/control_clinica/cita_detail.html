@@ -1,0 +1,21 @@
+{% extends "control_clinica/base.html" %}
+
+{% block contenido %}
+
+<p>
+    <strong>Síntoma: </strong> {{object.titulo}}
+</p>
+<p>
+    <strong>Especialidad: </strong> {{object.especialidad}}
+</p>
+<p>
+    <strong>Descripcion: </strong> {{object.descripcion}}
+</p>
+<p>
+    <strong>Fecha cita: </strong> {{object.fecha_cita}}
+</p>
+
+<br>
+<a href="{% url 'listar_citas' %}">Volver lista</a>
+
+{% endblock contenido %}

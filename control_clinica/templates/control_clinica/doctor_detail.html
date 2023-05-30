@@ -1,0 +1,19 @@
+{% extends "control_clinica/base.html" %}
+
+{% block contenido %}
+
+<p>
+    <strong>Nombre: </strong> {{object.nombre}}
+</p>
+<p>
+    <strong>Apellido: </strong> {{object.apellido}}
+</p>
+<p>
+    <strong>Especialidad: </strong> {{object.especialidad}}
+</p>
+
+
+<br>
+<a href="{% url 'listar_doctores' %}">Volver lista</a>
+
+{% endblock contenido %}

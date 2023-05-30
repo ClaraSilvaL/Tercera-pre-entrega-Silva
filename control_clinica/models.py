@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Diagnostico(models.Model):
@@ -38,10 +39,25 @@ class Receta(models.Model):
     def __str__(self):
         return f"{self.medicamento} | frec. horaria: {self.frecuencia_horaria} | nro dias: {self.numero_dias}"
     
-#class Servicios(models.Model):
-    #Titulo = models.CharField(max_length=256)
-    #Subtitulo = models.CharField(max_length=256)
-    #descripcion = models.TextField(blank=True)
-    #autor 
-    #fecha
-    #imagen
+class Cita(models.Model):
+    especialidad_descripcion = (
+        ('medicina general', 'Medicina general'),
+        ('cardiologia', 'Cardiologia'),
+        ('pediatria', 'Pediatria'),
+        ('dermatologia', 'Dermatologia'),
+        ('gastroenterologia', 'Gastroenterologia'),
+        ('ginecologia', 'Ginecologia'),
+        ('neumologia','Neumologia'),
+        ('psiquiatria', 'Psiquiatria'),
+        ('oncologia', 'Oncologia'),
+        ('otro', 'Otro'),
+    )
+    titulo = models.CharField(max_length=256)
+    especialidad = models.CharField(max_length=20, choices=especialidad_descripcion, default='medicina general')
+    descripcion = models.TextField(blank=True)
+    creador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_cita = models.DateField()
+    
+    def __str__(self):
+        return self.titulo

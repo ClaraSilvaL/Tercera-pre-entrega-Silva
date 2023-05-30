@@ -19,14 +19,17 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
-                    <th>Especialidad</th>
                 </tr>
                 {% for doctor in object_list %}
                 <tr>
                     <td>{{ doctor.id }} </td>
                     <td>{{ doctor.nombre }} </td>
                     <td>{{ doctor.apellido }} </td>
-                    <td>{{ doctor.especialidad }} </td>                    
+                    <td>
+                        <a href="{% url 'ver_doctor' doctor.id %}">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                    </td>                    
                 </tr>
                 {% endfor %}
             </tbody>

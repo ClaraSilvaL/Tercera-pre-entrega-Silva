@@ -16,12 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from . import views
 
 from control_clinica.views import buscar_doctor, buscar_paciente, buscar_estado, buscar_receta, \
     PacienteListView, PacienteCreateView, PacienteDetailView, PacienteDeleteView, PacienteUpdateView, \
     DiagnosticoListView, DiagnosticoCreateView, DiagnosticoDetailView, DiagnosticoDeleteView, DiagnosticoUpdateView, \
     DoctoresListView, DoctoresCreateView, DoctoresDetailView, DoctoresDeleteView, DoctoresUpdateView, \
-    RecetasListView, RecetasCreateView, RecetasDetailView, RecetasDeleteView, RecetasUpdateView
+    RecetasListView, RecetasCreateView, RecetasDetailView, RecetasDeleteView, RecetasUpdateView, \
+    CitasListView, CitasCreateView, CitasDetailView, CitasDeleteView, CitasUpdateView
 
 urlpatterns = [
     #URLS de pacientes
@@ -52,4 +54,12 @@ urlpatterns = [
     path("editar-receta/<int:pk>", RecetasUpdateView.as_view(), name="editar_receta"),
     path("eliminar-receta/<int:pk>", RecetasDeleteView.as_view(), name="eliminar_receta"),
     path('buscar-receta/', buscar_receta, name='buscar_receta'),
+    #URLS de citas
+    path('citas/', CitasListView.as_view(), name='listar_citas'),
+    path("citas/<int:pk>", CitasDetailView.as_view(), name="ver_cita"),
+    path("registrar-citas/", CitasCreateView.as_view(), name="registrar_cita"),
+    path("editar-cita/<int:pk>", CitasUpdateView.as_view(), name="editar_cita"),
+    path("eliminar-cita/<int:pk>", CitasDeleteView.as_view(), name="eliminar_cita"),
+    #URL acerca de mi
+    path('acercaDeMi/', views.about, name='acerca_de_mi')
 ]

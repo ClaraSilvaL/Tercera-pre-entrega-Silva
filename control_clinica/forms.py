@@ -24,3 +24,9 @@ class RecetaFormulario(forms.Form):
     medicamento = forms.CharField(required=True, max_length=256)
     frecuencia_horaria = forms.CharField(required=True, max_length=5)
     numero_dias = forms.CharField(required=True, max_length=5)
+
+class CitaFormulario(forms.Form):
+    titulo = forms.CharField(max_length=256)
+    especialidad = forms.CharField(max_length=15)
+    descripcion = forms.CharField(max_length=256)
+    fecha_cita = forms.DateField()

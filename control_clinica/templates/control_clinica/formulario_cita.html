@@ -1,0 +1,10 @@
+{% extends "control_clinica/base.html" %}
+
+{% block contenido %}
+<form action="{% url 'registrar_cita' %}" method="post">
+    {% csrf_token %}
+    {{ formulario_cita.as_p}}
+    <input type="submit" value="Enviar">
+</form>
+
+{% endblock contenido %}
