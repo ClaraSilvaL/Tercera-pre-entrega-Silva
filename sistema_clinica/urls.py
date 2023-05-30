@@ -20,6 +20,9 @@ from django.urls import path, include
 from sistema_clinica.views import saludar, saludar_con_html, inicio
 from control_clinica.views import PacienteListView, DiagnosticoListView
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('', inicio, name='inicio'),
     path('admin/', admin.site.urls),
@@ -28,3 +31,5 @@ urlpatterns = [
     path('saludo/', saludar),
     path('saludo-html/', saludar_con_html),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
